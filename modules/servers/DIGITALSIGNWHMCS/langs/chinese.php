@@ -1,0 +1,193 @@
+<?php
+
+$_LANG['token'] = 'Token';
+
+$_LANG['serverCA']['home']['configurationStatus']                = '配置状态';
+$_LANG['serverCA']['home']['Awaiting Configuration']             = '待配置';
+$_LANG['serverCA']['home']['Completed']                          = '完成';
+$_LANG['serverCA']['home']['configureNow']                       = '马上配置';
+$_LANG['serverCA']['home']['activationStatus']                   = '激活状态';
+$_LANG['serverCA']['home']['activationStatusActive']             = '有效';
+$_LANG['serverCA']['home']['activationStatusNewOrder']           = '进行中';
+$_LANG['serverCA']['home']['activationStatusPending']            = '进行中';
+$_LANG['serverCA']['home']['activationStatusCancelled']          = '已取消';
+$_LANG['serverCA']['home']['activationStatusPaymentNeeded']      = '待付款';
+$_LANG['serverCA']['home']['activationStatusProcessing']         = '处理中';
+$_LANG['serverCA']['home']['activationStatusIncomplete']         = '未完成';
+$_LANG['serverCA']['home']['activationStatusRejected']           = '被拒绝';
+$_LANG['serverCA']['home']['validFrom']                          = '有效期始';
+$_LANG['serverCA']['home']['validTill']                          = '有效期止';
+$_LANG['serverCA']['home']['domain']                             = '域名';
+$_LANG['serverCA']['home']['sans']                               = '别名';
+$_LANG['serverCA']['home']['Partner Order ID']                   = 'API 订单 ID';
+$_LANG['serverCA']['home']['ca_chain']                           = '中间证书链';
+$_LANG['serverCA']['home']['crt']                                = '证书';
+$_LANG['serverCA']['home']['csr']                                = 'CSR (证书申请请求)';
+$_LANG['serverCA']['home']['activationStatusRejected']           = '被拒绝';
+$_LANG['serverCA']['home']['hashFile']                           = '哈希文件';
+$_LANG['serverCA']['home']['content']                            = '内容';
+$_LANG['serverCA']['home']['dnsCnameRecord']                     = 'DNS 类别';
+$_LANG['serverCA']['home']['validationEmail']                    = '验证 Email';
+$_LANG['serverCA']['home']['renew']                              = '续费';
+$_LANG['serverCA']['home']['renewModalTitle']                    = '续费证书';
+$_LANG['serverCA']['home']['renewModalConfirmInformation']       = '你将续费证书,继续?';
+$_LANG['serverCA']['home']['redirectToInvoiceInformation']       = '你将在5秒钟内被重定向到账单页.';
+$_LANG['serverCA']['home']['resendValidationEmail']              = '重发验证 Email';
+$_LANG['serverCA']['home']['changeValidationEmail']              = '修改验证 Email';
+$_LANG['serverCA']['home']['revalidate']                         = '重新验证';
+$_LANG['serverCA']['home']['revalidateModalTitle']               = '重新验证';
+$_LANG['serverCA']['home']['revalidateModalDomainLabel']         = '域名';
+$_LANG['serverCA']['home']['revalidateModalMethodLabel']         = 'DCV 方式';
+$_LANG['serverCA']['home']['revalidateModalEmailLabel']          = 'Email 地址';
+$_LANG['serverCA']['home']['revalidate']                         = '重新验证';
+$_LANG['serverCA']['home']['revalidateModalMethodEmail']         = 'EMAIL';
+$_LANG['serverCA']['home']['revalidateModalMethodHttp']          = 'HTTP';
+$_LANG['serverCA']['home']['revalidateModalMethodHttps']         = 'HTTPS';
+$_LANG['serverCA']['home']['revalidateModalMethodDns']           = 'DNS';
+$_LANG['serverCA']['home']['loading']                            = '加载中...';
+$_LANG['serverCA']['home']['pleaseChooseOne']                    = '请选择一个...';
+$_LANG['serverCA']['home']['noValidationMethodSelected']         = '您没有为任何域名选择任何验证方式';
+$_LANG['serverCA']['home']['noEmailSelectedForDomain']           = '您没有为这些域名选择邮箱: ';
+$_LANG['serverCA']['home']['reloadInformation']                  = '页面将在 5 秒钟内重定向.';
+$_LANG['serverCA']['home']['changeApproverEmailModalModalTitle'] = '更改审核人 Email';
+$_LANG['serverCA']['home']['newApproverEmailModalModalLabel']    = '新审核人 Email';
+$_LANG['serverCA']['home']['viewPrivateKeyModalTitle']           = '参考私钥';
+$_LANG['serverCA']['home']['getPrivateKeyBtn']                   = '获取私钥';
+$_LANG['serverCA']['home']['reissueCertificate']                 = '重签证书';
+$_LANG['serverCA']['home']['Actions']                            = '操作';
+$_LANG['serverCA']['home']['Submit']                             = '提交';
+$_LANG['serverCA']['home']['Close']                              = '关闭';
+$_LANG['serverCA']['home']['sendCertificate']                    = '发送证书';
+$_LANG['serverCA']['home']['orderNotActiveError']                = '无法发送证书,订单非有效订单.';
+$_LANG['serverCA']['home']['CACodeEmptyError']                   = '错误,证书内容为空.';
+$_LANG['serverCA']['home']['sendCertificateSuccess']             = '证书发送成功.';
+
+$_LANG['serverCA']['reissueCertificate'] = 'Reissue Certificate';
+$_LANG['serverCA']['contactDetails']     = 'Contact Details';
+
+$_LANG['addonCA']['reissueCertificate'] = $_LANG['serverCA']['reissueCertificate'];
+$_LANG['addonCA']['contactDetails']     = $_LANG['serverCA']['contactDetails'];
+
+$_LANG['incorrectCSR']                  = 'Incorrect CSR';
+$_LANG['incorrectSans']                 = 'Folowed SAN domains are incorrect: ';
+$_LANG['exceededLimitOfSans']           = 'Exceeded limit of SAN domains';
+$_LANG['createNotInitialized']          = 'Create has not been initialized';
+$_LANG['notAllowToReissue']             = 'Order status not allow to reissue';
+$_LANG['canNotFetchWebServer']          = 'Can not fetch Web Server list, plase refresh page or contact support';
+$_LANG['canNotGenerateCsrCode']         = 'Can not generate CSR, please refresh page or contact support';
+$_LANG['csrCodeGeneraterdSuccessfully'] = 'CSR code has been generated successfully';
+$_LANG['csrCodeGeneraterFailed']        = 'Generate CSR code has been failed';
+$_LANG['invalidCommonName']             = 'Common Name is incorrect';
+$_LANG['invalidEmailAddress']           = 'Email Address is incorrect';
+$_LANG['invalidCountryCode']            = 'Country code is incorrect';
+$_LANG['orderTypeTitle']                = 'Order Type';
+$_LANG['orderTypeLabel']                = 'Type';
+$_LANG['newOrder']                      = 'New order';
+$_LANG['renewOrder']                    = 'Renewal';
+$_LANG['selectOrderTypeDescritpion']    = 'Select Renewal option in case you need renew existing SSL that expires soon. Certification center would add up to 90-days left from Original order.';
+
+$_LANG['reissueOneTitle']        = 'Reissue Certificate';
+$_LANG['reissueOneWebServer']    = 'Web Server';
+$_LANG['reissueOnePleaseChoose'] = 'Please choose one...';
+$_LANG['reissueOneCsr']          = 'CSR';
+$_LANG['reissueOneCsr']          = 'CSR';
+$_LANG['reissueOneSanDomains']   = 'SAN Domains';
+
+$_LANG['reissueTwoTitle']                            = 'Reissue - Certificate Approver Email';
+$_LANG['reissueSelectVerificationMethodTitle']       = 'Reissue - Certificate Validation';
+$_LANG['reissueTwoSubTitle']                         = 'You must now choose from the options below where you would like the approval email request for this certificate to be sent.';
+$_LANG['reissueSelectVerificationMethodDescription'] = 'You must now choose from the options below in order to pass Domain Control Validation (DCV) process.';
+$_LANG['reissueTwoContinue']                         = 'Continue';
+
+$_LANG['reissueThreeSuccess'] = 'Certificate successfully reissued';
+$_LANG['mustSelectServer']    = 'You must select your server type';
+
+$_LANG['contact_administrator']      = 'Administrator Contact';
+$_LANG['contact_admin_firstname']    = 'First Name';
+$_LANG['contact_admin_lastname']     = 'Last Name';
+$_LANG['contact_admin_organization'] = 'Organization';
+$_LANG['contact_admin_title']        = 'Job Title';
+$_LANG['contact_admin_addressline1'] = 'Address';
+$_LANG['contact_admin_city']         = 'City';
+$_LANG['contact_admin_country']      = 'Country';
+$_LANG['contact_admin_postalcode']   = 'Zip Code';
+$_LANG['contact_admin_region']       = 'Region';
+$_LANG['contact_admin_phone']        = 'Phone';
+$_LANG['contact_admin_fax']          = 'Fax';
+$_LANG['contact_admin_email']        = 'Email';
+
+$_LANG['contact_technical']         = 'Technical Contact';
+$_LANG['contact_tech_firstname']    = 'Firstname';
+$_LANG['contact_tech_lastname']     = 'Lastname';
+$_LANG['contact_tech_organization'] = 'Organization';
+$_LANG['contact_tech_title']        = 'Job Title';
+$_LANG['contact_tech_city']         = 'City';
+$_LANG['contact_tech_country']      = 'Country';
+$_LANG['contact_tech_postalcode']   = 'Zip Code';
+$_LANG['contact_tech_region']       = 'Region';
+$_LANG['contact_tech_phone']        = 'Phone';
+$_LANG['contact_tech_fax']          = 'Fax';
+$_LANG['contact_tech_email']        = 'Email';
+
+$_LANG['create_not_initialized'] = ' Create has not been initialized';
+
+$_LANG['sansTitle']                   = 'SANs';
+$_LANG['sansDescription']             = 'If you want add any SANs put them here (every SAN in separate line)';
+$_LANG['sansFreindlyName']            = 'SAN Domains';
+$_LANG['confOrganizationTitle']       = 'Organization Contact Information';
+$_LANG['confOrganizationName']        = 'Organization Name';
+$_LANG['confOrganizationDivision']    = 'Division';
+$_LANG['confOrganizationDuns']        = 'Duns';
+$_LANG['confOrganizationAddress']     = 'Address';
+$_LANG['confOrganizationCity']        = 'City';
+$_LANG['confOrganizationCountry']     = 'Country';
+$_LANG['confOrganizationFax']         = 'Fax';
+$_LANG['confOrganizationPhoneNumber'] = 'Phone Number';
+$_LANG['confOrganizationZipCode']     = 'Zip Code';
+$_LANG['confOrganizationStateRegion'] = 'State / Region';
+
+$_LANG['anErrorOccurred'] = 'An error occurred';
+
+$_LANG['sslcertSelectVerificationMethodTitle']       = 'Certificate Verification';
+$_LANG['sslcertSelectVerificationMethodDescription'] = 'You must now choose from the options below  in order to pass Domain Control Validation (DCV) process.';
+$_LANG['stepTwoTableLabelDomain']                    = 'Domain';
+$_LANG['stepTwoTableLabelDcvMethod']                 = 'DCV Method';
+$_LANG['stepTwoTableLabelEmail']                     = 'Email Address';
+$_LANG['dropdownDcvMethodEmail']                     = 'EMAIL';
+$_LANG['dropdownDcvMethodHttp']                      = 'HTTP';
+$_LANG['dropdownDcvMethodHttps']                     = 'HTTPS';
+$_LANG['dropdownDcvMethodDns']                       = 'DNS';
+$_LANG['generateCsrModalTitle']                      = 'Generate CSR';
+$_LANG['countryLabel']                               = 'Country';
+$_LANG['stateLabel']                                 = 'State';
+$_LANG['localityLabel']                              = 'Locality';
+$_LANG['organizationLabel']                          = 'Organization';
+$_LANG['organizationanUnitLabel']                    = 'Organization Unit';
+$_LANG['commonNameLabel']                            = 'Common Name';
+$_LANG['emailAddressLabel']                          = 'Email Address';
+$_LANG['statePlaceholder']                           = 'Texas';
+$_LANG['localityPlaceholder']                        = 'San Antonio';
+$_LANG['organizationPlaceholder']                    = 'Big Bobs Beepers';
+$_LANG['organizationanUnitPlaceholder']              = 'Marketing';
+$_LANG['commonNamePlaceholder']                      = 'example.com';
+$_LANG['commonNamePlaceholderWildCard']              = '*.domain.tld (requires)';
+$_LANG['emailAddressPlaceholder']                    = 'example@example.com';
+$_LANG['Generate CSR']                               = 'Generate CSR';
+$_LANG['Submit']                                     = 'Submit';
+$_LANG['Close']                                      = 'Close';
+$_LANG['Please choose one...']                       = 'Please choose one...';
+
+$_LANG['adminJobTitleMissing']    = 'You did not enter Administrative Job Title.';
+$_LANG['organizationNameMissing'] = 'You did not enter Organization Name.';
+$_LANG['orderTypeMissing']        = 'You did not select Order Type.';
+$_LANG['incorrectCSR']            = 'Incorrect CSR';
+$_LANG['sanLimitExceeded']        = 'Exceeded limit of SAN domains';
+$_LANG['incorrectSans']           = 'Folowed SAN domains are incorrect: ';
+
+$_LANG['addonCA']['sslSummary']['title']           = 'SSL Orders Summary';
+$_LANG['addonCA']['sslSummary']['total']           = 'Total Orders';
+$_LANG['addonCA']['sslSummary']['unpaid']          = 'Unpaid Orders';
+$_LANG['addonCA']['sslSummary']['processing']      = 'Processing';
+$_LANG['addonCA']['sslSummary']['expiresSoon']     = 'Expires Soon';
+$_LANG['addonCA']['customBackToServiceButtonLang'] = '« Back to Service Details';
+

@@ -1,0 +1,10 @@
+.DS_Store
+modules/*/*/vendor/*/*/README
+modules/*/*/vendor/*/*/*.md
+modules/*/*/vendor/*/*/LICENSE
+modules/*/*/vendor/*/*/*.json
+modules/*/*/vendor/*/*/composer.lock
+modules/*/*/vendor/*/*/makefile
+modules/*/*/vendor/*/*/.gitignore
+modules/*/*/vendor/*/*/*.xml
+modules/*/*/vendor/*/*/*.yml

@@ -1,0 +1,19 @@
+{
+    "name": "digitalsign/whmcs-module",
+    "authors": [
+        {
+            "name": "Xiaohui Lam",
+            "email": "xiaohui.lam@staff.digital-sign.cn",
+            "role": "co-founder"
+        }
+    ],
+    "require": {
+        "digitalsign/sdk": ">=0.0.2",
+        "guzzlehttp/guzzle": ">=6.3"
+    },
+    "config": {
+        "platform": {
+            "php": "5.6.3"
+        }
+    }
+}
