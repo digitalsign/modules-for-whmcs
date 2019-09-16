@@ -1,4 +1,5 @@
 .DS_Store
+init.php
 modules/*/*/vendor/*/*/README
 modules/*/*/vendor/*/*/*.md
 modules/*/*/vendor/*/*/LICENSE
