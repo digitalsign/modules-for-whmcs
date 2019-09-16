@@ -186,7 +186,7 @@
                                             {if $san.type == 'email'}
                                             <tr>
                                                 <td style="width: 15%" class="text-left">{$MGLANG->T('validationEmail')}</td>
-                                                <td class="text-left" style="word-wrap: break-word;">请进入 {$san.email.address} 收信</td>
+                                                <td class="text-left" style="word-wrap: break-word;">请进入 <span class="span-email" data-domain="{$san.san}">{$san.email.address}</span> 收信</td>
                                             </tr> 
                                             {/if}
                                         {/if} 
@@ -1148,11 +1148,19 @@
 
 
             (function ($) {
+                $('.span-email').each(function () {
+                    var spanEmail = $(this);
+                    var domain = spanEmail.attr('data-domain');
+                    var email = spanEmail.text();
+                    $('.select-email[data-domain="' + domain + '"] option[value="'+email+'"]').attr('selected', 'selected');
+                });
                 $(document).on('click', '.btn-change-dcv', function (evt) {
                     var btn = evt.currentTarget;
                     var domain = $(btn).attr('data-domain');
                     var dcv = $('.select-dcv[data-domain="' + domain + '"]').val();
                     var email = $('.select-email[data-domain="' + domain + '"]').val();
+                    $(btn).text('修改中..');
+                    $(btn).attr('disabled', 'disabled');
                     $.ajax({
                         url: 'clientarea.php?action=productdetails&id={/literal}{$serviceid}{literal}',
                         type: 'POST',
@@ -1164,6 +1172,7 @@
                         },
                         dataType: 'JSON',
                         complete: function (json) {
+                            $(btn).text('修改验证');
                             location.reload();
                         }
                     });
