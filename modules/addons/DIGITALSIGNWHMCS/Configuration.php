@@ -196,7 +196,6 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
         $apiConfigRepo->createApiConfigurationTable();
         $apiProductPriceRepo = (new \MGModule\DIGITALSIGNWHMCS\models\productPrice\Repository())->createApiProductsPricesTable();
         $userCommissionRepo = (new \MGModule\DIGITALSIGNWHMCS\models\userCommission\Repository())->createUserCommissionTable();
-        $upgradeSanRepo = (new \MGModule\DIGITALSIGNWHMCS\models\upgradeSan\Repository())->createApiUpgradeSanTable();
         eServices\EmailTemplateService::createConfigurationTemplate();
         eServices\EmailTemplateService::createCertyficateTemplate();
         eServices\EmailTemplateService::createExpireNotificationTemplate();
@@ -213,8 +212,6 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
         $apiConfigRepo->dropApiConfigurationTable();
         $apiProductPriceRepo = (new \MGModule\DIGITALSIGNWHMCS\models\productPrice\Repository())->dropApiProductsPricesTable();
         $userCommissionRepo = (new \MGModule\DIGITALSIGNWHMCS\models\userCommission\Repository())->dropUserCommissionTable();
-        $upgradeSanRepo = (new \MGModule\DIGITALSIGNWHMCS\models\upgradeSan\Repository())->dropApiUpgradeSanTable();
-
         eServices\EmailTemplateService::deleteConfigurationTemplate();
         eServices\EmailTemplateService::deleteCertyficateTemplate();
         eServices\EmailTemplateService::deleteExpireNotificationTemplate();

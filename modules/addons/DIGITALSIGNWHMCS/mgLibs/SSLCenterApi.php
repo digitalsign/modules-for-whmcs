@@ -23,9 +23,10 @@ use WHMCS\Database\Capsule;
 
 define('DEBUG', 'FALSE');
 
-class SSLCenterApi {
+class SSLCenterApi
+{
 
-    protected $apiUrl = 'https://dev.api.digital-sign.com.cn';
+    protected $apiUrl = 'https://api.digital-sign.com.cn';
     protected $accessKeyId;
     protected $accessKeySecret;
     protected $lastStatus;
@@ -35,65 +36,76 @@ class SSLCenterApi {
     protected $exceptionType;
     protected $sdk;
 
-    public function __construct($accessKeyId = null, $accessKeySecret = null) {
+    public function __construct($accessKeyId = null, $accessKeySecret = null, $apiOrigin = 'https://api.digital-sign.com.cn')
+    {
         $this->accessKeyId = $accessKeyId;
         $this->accessKeySecret = $accessKeySecret;
-        $this->sdk = new Client($accessKeyId, $accessKeySecret, Client::ORIGIN_API_DEV);
+        $this->apiUrl = $apiOrigin;
+        $this->sdk = new Client($accessKeyId, $accessKeySecret, $this->apiUrl);
 
         $this->setSSLCenterApiException();
     }
 
-    public function setSSLCenterException() {
+    public function setSSLCenterException()
+    {
         $this->exceptionType = 'SSLCenterException';
     }
 
-    public function setSSLCenterApiException() {
+    public function setSSLCenterApiException()
+    {
         $this->exceptionType = 'SSLCenterApiException';
     }
 
-    public function setNoneException() {
+    public function setNoneException()
+    {
         $this->exceptionType = 'none';
     }
 
-    public function turnOnApiExceptions() {
+    public function turnOnApiExceptions()
+    {
         $this->apiExceptions = true;
     }
 
-    public function turnOffApiExceptions() {
+    public function turnOffApiExceptions()
+    {
         $this->apiExceptions = false;
     }
 
-    public function auth($user, $pass) {
+    public function auth($user, $pass)
+    {
         $response = $this->call('/auth/', array(), array(
             'user' => $user,
             'pass' => $pass
         ));
 
-        if (!empty($response ['key'])) {
-            $this->key = $response ['key'];
+        if (!empty($response['key'])) {
+            $this->key = $response['key'];
             return $response;
         }
 
         return $response;
     }
 
-    public function addSslSan($orderId, $count) {
+    public function addSslSan($orderId, $count)
+    {
         if ($count) {
-            $postData ['order_id'] = $orderId;
-            $postData ['count'] = $count;
+            $postData['order_id'] = $orderId;
+            $postData['count'] = $count;
         }
 
         return $this->call('/orders/add_ssl_san_order/', $getData, $postData);
     }
 
-    public function cancelSSLOrder($orderId, $reason) {
-        $postData ['order_id'] = $orderId;
-        $postData ['reason'] = $reason;
+    public function cancelSSLOrder($orderId, $reason)
+    {
+        $postData['order_id'] = $orderId;
+        $postData['reason'] = $reason;
 
         return $this->call('/orders/cancel_ssl_order/', $getData, $postData);
     }
 
-    public function changeDcv($orderId, $data) {
+    public function changeDcv($orderId, $data)
+    {
         $request = new CertificateUpdateDcvRequest;
         $request->digitalsign_id = $orderId;
         $request->domain = $data['domain'];
@@ -108,43 +120,52 @@ class SSLCenterApi {
             dd($e->getMessage());
         }
     }
-    public function changeValidationMethod($orderId, $data) {
+    public function changeValidationMethod($orderId, $data)
+    {
         return $this->call('/orders/ssl/change_validation_method/' . (int) $orderId, $getData, $data);
     }
-    public function revalidate($orderId, $data) {
+    public function revalidate($orderId, $data)
+    {
         return $this->call('/orders/ssl/revalidate/' . (int) $orderId, $getData, $data);
     }
-    public function changeValidationEmail($orderId, $data) {
+    public function changeValidationEmail($orderId, $data)
+    {
         return $this->call('/orders/ssl/change_validation_email/' . (int) $orderId, $getData, $data);
     }
 
-    public function setKey($key) {
+    public function setKey($key)
+    {
         if ($key) {
             $this->key = $key;
         }
     }
 
-    public function setUrl($url) {
+    public function setUrl($url)
+    {
         $this->apiUrl = $url;
     }
 
-    public function decodeCSR($csr, $brand = 1, $wildcard = 0) {
+    public function decodeCSR($csr, $brand = 1, $wildcard = 0)
+    {
         return [
             'csrResult' => openssl_csr_get_subject($csr),
         ];
     }
 
-    public function getWebServers($type) {
+    public function getWebServers($type)
+    {
         return ['webservers' => ['data' => ['any' => 'any']]];
     }
 
-    public function getDomainAlternative($csr = null) {
+    public function getDomainAlternative($csr = null)
+    {
         $postData['csr'] = $csr;
 
         return $this->call('/tools/domain/alternative/', $getData, $postData);
     }
 
-    public function getDomainEmails($domain) {
+    public function getDomainEmails($domain)
+    {
         return [
             'admin@' . $domain,
             'administrator@' . $domain,
@@ -154,72 +175,88 @@ class SSLCenterApi {
         ];
     }
 
-    public function getDomainEmailsForGeotrust($domain) {
+    public function getDomainEmailsForGeotrust($domain)
+    {
         if ($domain) {
-            $postData ['domain'] = $domain;
+            $postData['domain'] = $domain;
         }
 
         return $this->call('/tools/domain/emails/geotrust', $getData, $postData);
     }
 
-    public function getAllProductPrices() {
+    public function getAllProductPrices()
+    {
         return $this->call('/products/all_prices/', $getData);
     }
 
-    public function getAllProducts() {
+    public function getAllProducts()
+    {
         return $this->call('/products/', $getData);
     }
 
-    public function getProduct($productId) {
+    public function getProduct($productId)
+    {
         return $this->call('/products/ssl/' . $productId, $getData);
     }
 
-    public function getProducts() {
+    public function getProducts()
+    {
         return $this->sdk->product->productList();
         //return $this->call('/products/ssl/', []);
     }
 
-    public function getProductDetails($productId) {
+    public function getProductDetails($productId)
+    {
         return $this->call('/products/details/' . $productId, $getData);
     }
 
-    public function getProductPrice($productId) {
+    public function getProductPrice($productId)
+    {
         return $this->call('/products/price/' . $productId, $getData);
     }
 
-    public function getUserAgreement($productId) {
+    public function getUserAgreement($productId)
+    {
         return $this->call('/products/agreement/' . $productId, $getData);
     }
 
-    public function getAccountBalance() {
+    public function getAccountBalance()
+    {
         return $this->call('/account/balance/', $getData);
     }
 
-    public function getAccountDetails() {
+    public function getAccountDetails()
+    {
         return $this->call('/account/', $getData);
     }
 
-    public function getTotalOrders() {
+    public function getTotalOrders()
+    {
         return $this->call('/account/total_orders/', $getData);
     }
 
-    public function getAllInvoices() {
+    public function getAllInvoices()
+    {
         return $this->call('/account/invoices/', $getData);
     }
 
-    public function getUnpaidInvoices() {
+    public function getUnpaidInvoices()
+    {
         return $this->call('/account/invoices/unpaid/', $getData);
     }
 
-    public function getTotalTransactions() {
+    public function getTotalTransactions()
+    {
         return $this->call('/account/total_transactions/', $getData);
     }
 
-    public function addSSLOrder1($data) {
+    public function addSSLOrder1($data)
+    {
         return $this->call('/orders/add_ssl_order1/', $getData, $data);
     }
 
-    public function addSSLOrder($data) {
+    public function addSSLOrder($data)
+    {
         $request = new CertificateCreateRequest;
         $request->csr = $data['csr'];
         $request->registered_address_line1 = $data['admin_addressline1'];
@@ -239,12 +276,14 @@ class SSLCenterApi {
         return $this->sdk->order->certificateCreate($request);
     }
 
-    public function addSSLRenewOrder($data) {
+    public function addSSLRenewOrder($data)
+    {
         $data['renew'] = 1;
         return $this->addSSLOrder($data);
     }
 
-    public function reIssueOrder($orderId, $data) {
+    public function reIssueOrder($orderId, $data)
+    {
         $request = new CertificateReissueRequest;
         $request->digitalsign_id = $orderId;
         $request->csr = $data['csr'];
@@ -263,11 +302,13 @@ class SSLCenterApi {
         return $this->sdk->order->certificateReissue($request);
     }
 
-    public function activateSSLOrder($orderId) {
+    public function activateSSLOrder($orderId)
+    {
         return $this->call('/orders/ssl/activate/' . (int) $orderId, $getData);
     }
 
-    public function addSandboxAccount($data) {
+    public function addSandboxAccount($data)
+    {
         return $this->call('/accounts/sandbox/add/', $getData, $data);
     }
 
@@ -275,59 +316,70 @@ class SSLCenterApi {
      * @param int $orderId
      * @return \DigitalSign\Sdk\Scheme\CertificateDetailScheme
      */
-    public function getOrderStatus($orderId) {
+    public function getOrderStatus($orderId)
+    {
         $request = new CertificateDetailRequest;
         $request->digitalsign_id = $orderId;
         return $this->sdk->order->certificateDetail($request);
     }
 
-    public function comodoClaimFreeEV($orderId, $data) {
+    public function comodoClaimFreeEV($orderId, $data)
+    {
         return $this->call('/orders/ssl/comodo_claim_free_ev/' . (int) $orderId, $getData, $data);
     }
 
-    public function getOrderInvoice($orderId) {
+    public function getOrderInvoice($orderId)
+    {
         return $this->call('/orders/invoice/' . (int) $orderId, $getData);
     }
 
-    public function getUnpaidOrders() {
+    public function getUnpaidOrders()
+    {
         return $this->call('/orders/list/unpaid/', $getData);
     }
 
-    public function resendEmail($orderId) {
+    public function resendEmail($orderId)
+    {
         $request = new CertificateValidateDcvRequest;
         $request->digitalsign_id = $orderId;
         return $this->sdk->order->certificateValidateDcv($request);
     }
 
-    public function resendValidationEmail($orderId) {
+    public function resendValidationEmail($orderId)
+    {
         return $this->resendEmail($orderId);
     }
 
-    public function getCSR($data) {
+    public function getCSR($data)
+    {
         return $this->call('/tools/csr/get/', $getData, $data);
     }
 
-    public function generateCSR($data) {
+    public function generateCSR($data)
+    {
         return $this->call('/tools/csr/generate/', $getData, $data);
     }
 
-    public function getLastStatus() {
+    public function getLastStatus()
+    {
         return $this->lastStatus;
     }
 
-    public function getLastResponse() {
+    public function getLastResponse()
+    {
         return $this->lastResponse;
     }
 
-  public function getLastRequest() {
+    public function getLastRequest()
+    {
         return $this->lastRequest;
     }
 }
 
-class SSLCenterException extends \Exception {
-
+class SSLCenterException extends \Exception
+{
 }
 
-class SSLCenterApiException extends \Exception {
-
+class SSLCenterApiException extends \Exception
+{
 }
