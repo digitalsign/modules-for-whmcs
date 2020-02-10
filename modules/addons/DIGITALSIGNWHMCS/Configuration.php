@@ -94,22 +94,22 @@ class Configuration extends main\mgLibs\process\AbstractConfiguration
                 (
                 'icon' => 'fa fa-key',
             ),
-            'productsCreator'       => array
-                (
-                'icon' => 'fa fa-magic',
-            ),
-            'productsConfiguration' => array
-                (
-                'icon' => 'fa fa-edit',
-            ),
-            'importSSLOrder'        => array
-                (
-                'icon' => 'fa fa-download',
-            ),
-            'userCommissions'        => array
-                (
-                'icon' => 'fa fa-user-plus',
-            ),
+            // 'productsCreator'       => array
+            //     (
+            //     'icon' => 'fa fa-magic',
+            // ),
+            // 'productsConfiguration' => array
+            //     (
+            //     'icon' => 'fa fa-edit',
+            // ),
+            // 'importSSLOrder'        => array
+            //     (
+            //     'icon' => 'fa fa-download',
+            // ),
+            // 'userCommissions'        => array
+            //     (
+            //     'icon' => 'fa fa-user-plus',
+            // ),
         );
     }
 
