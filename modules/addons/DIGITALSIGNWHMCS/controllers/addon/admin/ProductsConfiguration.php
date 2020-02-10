@@ -9,7 +9,8 @@ use MGModule\DIGITALSIGNWHMCS\eServices\provisioning\ConfigOptions as C;
  * Base example
  */
 
-class ProductsConfiguration extends main\mgLibs\process\AbstractController {
+class ProductsConfiguration extends main\mgLibs\process\AbstractController
+{
 
     /**
      * This is default page. 
@@ -17,40 +18,38 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * @param type $vars
      * @return type
      */
-    public function indexHTML($input = [], $vars = []) {
+    public function indexHTML($input = [], $vars = [])
+    {
         try {
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($input['createConfOptions'])) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' and isset($input['createConfOptions'])) {
                 main\eServices\ConfigurableOptionService::createForProduct($input['productId'], $input['productName']);
                 $vars['success'] = main\mgLibs\Lang::T('messages', 'configurable_generated');
             }
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' AND isset($input['saveProduct'])) {                
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' and isset($input['saveProduct'])) {
                 $this->saveProducts($input, $vars);
                 $vars['success'] = main\mgLibs\Lang::T('messages', 'product_saved');
             }
             $productModel = new \MGModule\DIGITALSIGNWHMCS\models\productConfiguration\Repository();
             $products = $productModel->getModuleProducts();
             foreach ($products as $key => $product) {
-                try
-                {				
+                try {
                     $apiProduct = main\eRepository\sslcenter\Products::getInstance()->getProduct($product->{C::API_PRODUCT_ID});
-                }
-                catch(\Exception $e)
-                {
+                } catch (\Exception $e) {
                     unset($products[$key]);
                     continue;
                 }
-                
+
                 $apiConfig                  = (object) null;
                 $apiConfig->name            = $apiProduct->product;
                 $apiConfig->peroids         = max($apiProduct->getPeriods());
-                $apiConfig->availablePeriods= $apiProduct->getPeriods();                
+                $apiConfig->availablePeriods = $apiProduct->getPeriods();
                 $apiConfig->isSanEnabled    = $apiProduct->isSanEnabled();
                 $products[$key]->apiConfig  = $apiConfig;
-                $products[$key]->confOption = main\eServices\ConfigurableOptionService::getForProduct($product->id);    
+                $products[$key]->confOption = main\eServices\ConfigurableOptionService::getForProduct($product->id);
             }
-            
+
             $vars['products'] = $products;
             $vars['products_count'] = count($vars['products']);
 
@@ -64,15 +63,15 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
         }
 
 
-        return array
-            (
+        return array(
             'tpl' => 'products_configuration',
             'vars' => $vars
         );
     }
 
-    public function saveProducts($input = array(), $vars = array()) {
-        
+    public function saveProducts($input = array(), $vars = array())
+    {
+
         $productModel = new \MGModule\DIGITALSIGNWHMCS\models\productConfiguration\Repository();
         foreach ($input['product'] as $key => $value) {
             $productModel->updateProducDetails($key, $value);
@@ -81,11 +80,12 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
         foreach ($input['currency'] as $key => $value) {
             $productModel->updateProductPricing($key, $value);
         }
-        
+
         return true;
     }
 
-    public function enableProductJSON($input, $vars = array()) {
+    public function enableProductJSON($input, $vars = array())
+    {
         $productId = trim($input['productId']);
         if (!empty($productId)) {
 
@@ -104,7 +104,8 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
         ];
     }
 
-    public function disableProductJSON($input, $vars = array()) {
+    public function disableProductJSON($input, $vars = array())
+    {
         $productId = trim($input['productId']);
         if (!empty($productId)) {
 
@@ -123,8 +124,8 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
         ];
     }
 
-    function saveItemHTML($input, $vars = array()) {
-
+    function saveItemHTML($input, $vars = array())
+    {
         if ($this->checkToken()) {
             try {
                 $login = trim($input['login']);
@@ -145,7 +146,8 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
         return $this->indexHTML($input, $vars);
     }
 
-    public function testConnectionJSON($input = [], $vars = []) {
+    public function testConnectionJSON($input = [], $vars = [])
+    {
         $login = trim($input['login']);
         $password = trim($input['password']);
         if (!empty($login) && !empty($password)) {
@@ -174,11 +176,11 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * @param type $vars
      * @return type
      */
-    public function pageHTML() {
+    public function pageHTML()
+    {
         $vars = array();
 
-        return array
-            (
+        return array(
             //You have to create tpl file  /modules/addons/DIGITALSIGNWHMCS/templates/admin/pages/example1/page.1tpl
             'tpl' => 'page',
             'vars' => $vars
@@ -195,9 +197,9 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * @param type $vars
      * @return type
      */
-    public function ajaxErrorHTML() {
-        return array
-            (
+    public function ajaxErrorHTML()
+    {
+        return array(
             'tpl' => 'ajaxError'
         );
     }
@@ -208,9 +210,9 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * @param type $vars
      * @return type
      */
-    public function getErrorArrayJSON() {
-        return array
-            (
+    public function getErrorArrayJSON()
+    {
+        return array(
             'error' => 'Custom error'
         );
     }
@@ -221,9 +223,9 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * @param type $vars
      * @return type
      */
-    public function getSuccessArrayJSON() {
-        return array
-            (
+    public function getSuccessArrayJSON()
+    {
+        return array(
             'success' => 'Custom success'
         );
     }
@@ -232,9 +234,9 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * AJAX USING DATA-ACT
      * *********************************************************************** */
 
-    public function ajaxErrorDataActHTML() {
-        return array
-            (
+    public function ajaxErrorDataActHTML()
+    {
+        return array(
             'tpl' => 'ajaxErrorDataAct'
         );
     }
@@ -243,16 +245,16 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * AJAX CONTENT
      * *********************************************************************** */
 
-    public function ajaxContentHTML() {
-        return array
-            (
+    public function ajaxContentHTML()
+    {
+        return array(
             'tpl' => 'ajaxContent'
         );
     }
 
-    public function ajaxContentJSON() {
-        return array
-            (
+    public function ajaxContentJSON()
+    {
+        return array(
             'html' => main\mgLibs\Smarty::I()->view('ajaxContentJSON')
         );
     }
@@ -261,18 +263,17 @@ class ProductsConfiguration extends main\mgLibs\process\AbstractController {
      * CREATOR
      * ***************************************************** */
 
-    public function getCreatorJSON() {
+    public function getCreatorJSON()
+    {
         $creator = new main\mgLibs\forms\Popup('mymodal');
         $creator->addField(new main\mgLibs\forms\TextField(array(
             'name' => 'customTextField',
             'value' => 'empty_value',
             'placeholder' => 'placeholder!'
-        )));
-        ;
+        )));;
 
         return array(
             'modal' => $creator->getHTML()
         );
     }
-
 }
