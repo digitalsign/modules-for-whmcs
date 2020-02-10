@@ -13,9 +13,9 @@ class ApiConfiguration extends main\mgLibs\process\AbstractController
 
     /**
      * This is default page.
-     * @param type $input
-     * @param type $vars
-     * @return type
+     * @param array $input
+     * @param array $vars
+     * @return array
      */
     public function indexHTML($input = [], $vars = [])
     {
@@ -443,8 +443,7 @@ class ApiConfiguration extends main\mgLibs\process\AbstractController
 
     public function testConnectionJSON($input = [], $vars = [])
     {
-
-        $api = new \MGModule\DIGITALSIGNWHMCS\mgLibs\SSLCenterApi($input['access_key_id'], $input['access_key_secret']);
+        $api = new \MGModule\DIGITALSIGNWHMCS\mgLibs\SSLCenterApi($input['access_key_id'], $input['access_key_secret'], $input['api_origin']);
 
         $authKey = $api->getProducts();
 
