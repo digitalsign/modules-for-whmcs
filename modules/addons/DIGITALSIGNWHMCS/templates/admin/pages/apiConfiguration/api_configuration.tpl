@@ -132,9 +132,10 @@ Proin malesuada eros in risus accumsan euismod. Vivamus lacinia pellentesque nun
             });
             jQuery('button[name="testConnection"]').click(function () {
                 var login = $('#item_default_access_key_id').val(),
-                        password = $('#item_default_access_key_secret').val();
+                        password = $('#item_default_access_key_secret').val(),
+                        origin = $('#item_default_api_origin').val();
 
-                JSONParser.request('testConnection', {access_key_id: login, access_key_secret: password}, function (data) {
+                JSONParser.request('testConnection', {access_key_id: login, access_key_secret: password, api_origin: origin}, function (data) {
                     if (data.success == true) {
                         $('#MGAlerts>div[data-prototype="success"]').show();
                         $('#MGAlerts>div[data-prototype="success"] strong').html(data.message);
