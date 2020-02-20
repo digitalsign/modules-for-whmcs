@@ -271,7 +271,7 @@ class SSLCenterApi
 
         $url  = Capsule::table('tblconfiguration')->where('setting', '=', 'SystemURL')->first();
         $system_url = $url->value;
-        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNSSL/notify.php';
+        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNWHMCS/notify.php';
 
         return $this->sdk->order->certificateCreate($request);
     }
@@ -297,7 +297,7 @@ class SSLCenterApi
 
         $url  = Capsule::table('tblconfiguration')->where('setting', '=', 'SystemURL')->first();
         $system_url = $url->value;
-        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNSSL/notify.php';
+        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNWHMCS/notify.php';
 
         return $this->sdk->order->certificateReissue($request);
     }
