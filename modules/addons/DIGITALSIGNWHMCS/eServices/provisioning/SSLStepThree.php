@@ -109,7 +109,7 @@ class SSLStepThree extends SSLBase {
         $request->country = $this->p['country']; // required for OV SSL certificates
         $request->postal_code = $this->p['postcode'];
         $request->state = $this->p['state'];
-        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNSSL/notify.php';
+        $request->notify_url = $system_url . '/modules/addons/DIGITALSIGNWHMCS/notify.php';
 
         if (isset($this->p['fields']) && isset($this->p['fields']['sans_domains']) && is_string($this->p['fields']['sans_domains'])) {
             $domains = explode(PHP_EOL, $this->p['fields']['sans_domains']);
